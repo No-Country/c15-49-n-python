@@ -14,3 +14,15 @@
 ```bash
 ❯ flask db downgrade
 ```
+
+- To create a new database table you must
+
+- Create a new model on folder modules
+- Import on the `api/models/**init**.py` file
+- Import on the `api/app/**init**.py` file to become the model be accesible for all the app
+- Then run on the terminal the following commands
+
+```bash
+❯ flask db migrate # To automatically create the migration field
+❯ flask db upgrade # To commit changes to your database
+```
