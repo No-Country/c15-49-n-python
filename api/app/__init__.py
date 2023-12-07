@@ -19,6 +19,6 @@ def create_app(config_name='default'):
 
     app.register_blueprint(api)
 
-    from .models import User, Job, Relation_user_job
+    from .models import User, Job, Relation_user_job, Job_detail
 
     return app
