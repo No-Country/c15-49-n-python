@@ -2,7 +2,7 @@ from .. import db
 import datetime
 
 
-class Job_detail(db.Model):
+class JobDetail(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     id_relationship_user_job = db.Column(db.Integer, db.ForeignKey('relationship_user_job.id'), nullable=False)
@@ -12,5 +12,5 @@ class Job_detail(db.Model):
     
     
     def _repr_(self):
-        return f"<Job_detail {self.id}>"
+        return f"<JobDetail {self.id}>"
     
