@@ -1,8 +1,8 @@
 """Add profile_image to User model
 
-Revision ID: 1b526f223142
+Revision ID: ec0cc97eff31
 Revises: 
-Create Date: 2023-12-13 19:45:35.226985
+Create Date: 2023-12-13 19:48:47.919476
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1b526f223142'
+revision = 'ec0cc97eff31'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -43,6 +43,7 @@ def upgrade():
     sa.Column('last_name', sa.String(length=255), nullable=True),
     sa.Column('location', sa.String(length=255), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=True),
+    sa.Column('profile_image', sa.String(length=255), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
@@ -65,7 +66,6 @@ def upgrade():
     sa.Column('attention_time', sa.Date(), nullable=False),
     sa.Column('id_assessment', sa.Integer(), nullable=False),
     sa.Column('state', sa.Enum('pending', 'in_progress', 'completed'), nullable=False),
-    sa.Column('profile_image', sa.String(length=255), nullable=True),
     sa.ForeignKeyConstraint(['id_assessment'], ['assessment.id'], ),
     sa.ForeignKeyConstraint(['id_relationship_user_job'], ['relationship_user_job.id'], use_alter=True),
     sa.ForeignKeyConstraint(['id_user'], ['user.id'], ),

@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(255))
     location = db.Column(db.String(255))
     is_active = db.Column(db.Boolean, default=True) 
+    profile_image = db.Column(db.String(255)) #incluimos imagen de perfil
 
     def set_password(self, password):
         print(password)
@@ -41,7 +42,7 @@ class Service(db.Model):
     attention_time = db.Column(db.Date, default=datetime, nullable=False)
     id_assessment = db.Column(db.Integer, db.ForeignKey('assessment.id'), nullable=False)
     state = db.Column(db.Enum('pending', 'in_progress', 'completed'), nullable=False)
-    profile_image = db.Column(db.String(255)) #incluimos imagen de perfil
+    
     
     def _repr_(self):
         return f"<Service {self.description}>"
