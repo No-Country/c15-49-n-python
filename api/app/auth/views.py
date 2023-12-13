@@ -1,12 +1,11 @@
 # /auth/views.py
 from flask import request, jsonify, redirect, url_for, flash
 from . import auth
-from ..models import User, db
-
-# 
+from ..models import User, db, Service, Job_detail 
+ 
 from flask_login import login_user, logout_user, login_required, current_user
 from . import auth
-from ..models import User
+
 
 
 import re
@@ -79,6 +78,8 @@ def logout():
 
 
 # /auth/views.py
+
+##### VER INFORMACION DEL USUARIO #####
 @auth.route("/api/user_info")
 @login_required
 def user_info():
@@ -89,8 +90,41 @@ def user_info():
         'last_name': current_user.last_name,
         'location': current_user.location,
         'profile_image': current_user.profile_image,
+        'jobs': get_user_jobs(current_user.id),  # Obtener trabajos del usuario
     }
     return jsonify(user_info), 200
+
+def get_user_jobs(user_id):
+    jobs = []
+
+    # Obtener todos los servicios del usuario
+    services = Service.query.filter_by(id_user=user_id).all()
+
+    for service in services:
+        job = {
+            'description': service.description,
+            'state': service.state,
+            'job_details': get_job_details(service.id),
+        }
+        jobs.append(job)
+
+    return jobs
+
+def get_job_details(service_id):
+    job_details = []
+
+    # Obtener todos los detalles del trabajo para el servicio dado
+    job_details_db = Job_detail.query.filter_by(id_service=service_id).all()
+
+    for job_detail_db in job_details_db:
+        job_detail = {
+            'description': job_detail_db.description,
+            'attention_day': job_detail_db.attention_day,
+            'attention_time': job_detail_db.attention_time,
+        }
+        job_details.append(job_detail)
+
+    return job_details
 
 
 
