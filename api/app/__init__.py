@@ -1,32 +1,29 @@
+# app/__init__.py
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from .config import Config
+from .extensions import db, migrate, ma, login_manager, configure_cors
 
-from flask_login import LoginManager
-from flask_marshmallow import Marshmallow
-
-from .config import config
-from .routes import api
-
-
-db = SQLAlchemy()
-migrate = Migrate()
-ma = Marshmallow()
-login_manager = LoginManager()
-
-
-def create_app(config_name='default'):
+def create_app():
     app = Flask(__name__)
-    app.config.from_object(config[config_name])
+    app.config.from_object(Config)
 
     db.init_app(app)
     migrate.init_app(app, db)
-
-    app.register_blueprint(api)
-
     ma.init_app(app)
     login_manager.init_app(app)
 
-    from .models import User, Job, Relationship_user_job, Job_detail, Service, Assessment
+    # Configuración CORS
+    configure_cors(app)
 
-    return app
+
+    from .models import User
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
+
+    with app.app_context():
+        from .auth import auth
+        app.register_blueprint(auth)
+
+        return app
