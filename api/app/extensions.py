@@ -16,6 +16,6 @@ cors = CORS()  # Inicializa la extensión CORS
 
 # Configuración CORS
 def configure_cors(app):
-    cors.init_app(app, origins="*")  # Configura los orígenes permitidos.
+    cors.init_app(app, origins="*", supports_credentials=True)  # Configura los orígenes permitidos.
 
 

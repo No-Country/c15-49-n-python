@@ -7,18 +7,20 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
+    # Configuración CORS
+    configure_cors(app)
+
     db.init_app(app)
     migrate.init_app(app, db)
     ma.init_app(app)
     login_manager.init_app(app)
 
-    # Configuración CORS
-    configure_cors(app)
-
 
     from .models import User
     @login_manager.user_loader
     def load_user(user_id):
+        # Esta función se utiliza para cargar el usuario durante el proceso de login.
+        # Se llama automáticamente por Flask-Login.
         return User.query.get(int(user_id))
 
 

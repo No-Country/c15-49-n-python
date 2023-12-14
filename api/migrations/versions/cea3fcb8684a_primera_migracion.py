@@ -1,8 +1,8 @@
-"""Add profile_image to User model
+"""PRIMERA MIGRACION
 
-Revision ID: ec0cc97eff31
+Revision ID: cea3fcb8684a
 Revises: 
-Create Date: 2023-12-13 19:48:47.919476
+Create Date: 2023-12-13 21:27:43.570399
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ec0cc97eff31'
+revision = 'cea3fcb8684a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,7 +25,7 @@ def upgrade():
     sa.Column('comment_user_client', sa.Float(), nullable=False),
     sa.Column('assessment_user_provider', sa.Float(), nullable=False),
     sa.Column('comment_user_provier', sa.Float(), nullable=False),
-    sa.Column('state', sa.Enum('canceled', 'evaluate', 'aproved'), nullable=False),
+    sa.Column('state', sa.Enum('canceled', 'evaluate', 'approved'), nullable=False),
     sa.ForeignKeyConstraint(['id_service'], ['service.id'], use_alter=True),
     sa.PrimaryKeyConstraint('id')
     )

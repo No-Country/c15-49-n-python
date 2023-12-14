@@ -1,7 +1,7 @@
 # /app/models.py
 
 from .extensions import db
-from flask_login import UserMixin
+from flask_login import UserMixin, user_loaded_from_cookie
 from werkzeug.security import generate_password_hash, check_password_hash
 
 import datetime
@@ -40,7 +40,7 @@ class Service(db.Model):
     attention_time = db.Column(db.Date, default=datetime.datetime.utcnow, nullable=False)
     id_assessment = db.Column(db.Integer, db.ForeignKey('assessment.id'), nullable=False)
     state = db.Column(db.Enum('pending', 'in_progress', 'completed'), nullable=False)
-    user = db.relationship('User', backref=db.backref('services', lazy=True))
+    # user = db.relationship('User', backref=db.backref('services', lazy=True))
 
 
 class Relationship_user_job(db.Model):

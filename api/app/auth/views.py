@@ -1,11 +1,12 @@
 # /auth/views.py
-from flask import request, jsonify, redirect, url_for, flash
+from flask import request, jsonify, redirect, url_for, flash, make_response
 from . import auth
 from ..models import User, db, Service, Job_detail 
  
 from flask_login import login_user, logout_user, login_required, current_user
 from . import auth
 
+from sqlalchemy.exc import SQLAlchemyError
 
 
 import re
@@ -55,8 +56,21 @@ def login():
     user = User.query.filter_by(email=email).first()
     
     if user and user.check_password(password):
-        # inicio de sesión aquí
-        login_user(user)
+        # Iniciar sesión
+        login_user(user, remember=True)  # La opción `remember` determina si se recuerda la sesión
+
+
+        # user_info = {
+        # 'user_id': current_user.id,
+        # 'email': current_user.email,
+        # 'first_name': current_user.first_name,
+        # 'last_name': current_user.last_name,
+        # 'location': current_user.location,
+        # 'profile_image': current_user.profile_image,
+        # 'jobs': get_user_jobs(current_user.id),}
+    
+        # return jsonify(user_info), 200
+
         return jsonify({'message': 'Inicio de sesión exitoso', 'user_id': user.id, 'email': user.email}), 200
     else:
         return jsonify({'message': 'Correo electrónico o contraseña inválidos'}), 401
@@ -66,12 +80,12 @@ def login():
 ### solo para ver si esta bien la ruta
 @auth.route("/")
 def index():
-    return jsonify({'users': "hola"})
+    return jsonify({'message': '¡Hola! Esta es la ruta principal de la autenticación'})
 
 
 
 @auth.route("/api/logout")
-@login_required
+# @login_required
 def logout():
     logout_user()
     return jsonify({'message': 'Cierre de sesión exitoso'}), 200
@@ -81,7 +95,7 @@ def logout():
 
 ##### VER INFORMACION DEL USUARIO #####
 @auth.route("/api/user_info")
-@login_required
+# @login_required
 def user_info():
     user_info = {
         'user_id': current_user.id,
@@ -90,7 +104,7 @@ def user_info():
         'last_name': current_user.last_name,
         'location': current_user.location,
         'profile_image': current_user.profile_image,
-        'jobs': get_user_jobs(current_user.id),  # Obtener trabajos del usuario
+        'jobs': get_user_jobs(current_user.id),
     }
     return jsonify(user_info), 200
 
@@ -131,17 +145,28 @@ def get_job_details(service_id):
 ### Editar Perfil ####
 
 @auth.route("/api/edit_profile", methods=['PUT'])
-@login_required
+# @login_required
 def edit_profile():
-    data = request.get_json()
+    try:
+        data = request.get_json()
 
-    current_user.first_name = data.get('first_name', current_user.first_name)
-    current_user.last_name = data.get('last_name', current_user.last_name)
-    current_user.location = data.get('location', current_user.location)
-    current_user.profile_image = data.get('profile_image', current_user.profile_image)
+        # Validar la entrada si es necesario
+        # Ejemplo: 
+        # if not data.get('first_name') or not data.get('last_name'):
+        #             return jsonify({'error': 'Nombre y apellido son obligatorios'}), 400
 
-    db.session.commit()
+        # Actualizar el perfil del usuario
+        current_user.first_name = data.get('first_name', current_user.first_name)
+        current_user.last_name = data.get('last_name', current_user.last_name)
+        current_user.location = data.get('location', current_user.location)
+        current_user.profile_image = data.get('profile_image', current_user.profile_image)
 
-    return jsonify({'message': 'Perfil actualizado exitosamente'}), 200
+        # Confirmar los cambios en la base de datos
+        db.session.commit()
 
-
+        return jsonify({'message': 'Perfil actualizado exitosamente'}), 200
+    except SQLAlchemyError as e:
+        db.session.rollback()  # Revertir cambios en caso de error
+        return jsonify({'error': str(e)}), 500
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
