@@ -3,6 +3,12 @@ from flask import Flask
 from .config import Config
 from .extensions import db, migrate, ma, login_manager, configure_cors
 
+# from flask import Blueprint
+
+# user_views = Blueprint('user_views', __name__)
+
+
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -27,5 +33,9 @@ def create_app():
     with app.app_context():
         from .auth import auth
         app.register_blueprint(auth)
+
+        # Importa y registra el blueprint user_views
+        from .views import user_views
+        app.register_blueprint(user_views)
 
         return app

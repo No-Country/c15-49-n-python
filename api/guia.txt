@@ -53,3 +53,16 @@ flask db downgrade
 
 (HISTORIAL)
 flask db history
+
+
+
+EndPoint
+http://127.0.0.1:5000
+/get_user_data/<int:user_id>  (GET)
+/get_users_with_jobs   (GET)
+/update_user_data/<int:user_id    (POST)
+
+'/add_user_job'  *****  (POST) 
+'/add_user_job_id'  *****  (POST) 
+
+/search_users

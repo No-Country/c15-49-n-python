@@ -48,10 +48,15 @@ class Relationship_user_job(db.Model):
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     id_job = db.Column(db.Integer, db.ForeignKey('job.id'), nullable=False)
 
+    # Añade una relación a la tabla Job
+    job = db.relationship('Job')
+
+
 class Job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(255), nullable=False)
     is_active = db.Column(db.Boolean, default=True)
+
 
 class Job_detail(db.Model):
     id = db.Column(db.Integer, primary_key=True)

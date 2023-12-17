@@ -84,18 +84,25 @@ def index():
 
 
 
-@auth.route("/api/logout")
-# @login_required
+@auth.route("/api/logout", methods=['POST'])
 def logout():
+    # Realizar cualquier otra lógica de logout necesaria
     logout_user()
-    return jsonify({'message': 'Cierre de sesión exitoso'}), 200
+
+    # Eliminar o expirar las cookies de sesión
+    response = jsonify({'message': 'Logout exitoso'})
+    response.delete_cookie('remember_token', samesite='None', secure=True)  # Agregar SameSite y secure
+    response.delete_cookie('mi_sesion', samesite='None', secure=True)  # Agregar SameSite y secure
+
+    return response, 200
+    # return jsonify({'message': 'Cierre de sesión exitoso'}), 200
 
 
 # /auth/views.py
 
 ##### VER INFORMACION DEL USUARIO #####
 @auth.route("/api/user_info")
-# @login_required
+@login_required
 def user_info():
     user_info = {
         'user_id': current_user.id,
@@ -145,7 +152,7 @@ def get_job_details(service_id):
 ### Editar Perfil ####
 
 @auth.route("/api/edit_profile", methods=['PUT'])
-# @login_required
+@login_required
 def edit_profile():
     try:
         data = request.get_json()
