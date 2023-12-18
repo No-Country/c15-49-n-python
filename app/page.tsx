@@ -1,11 +1,16 @@
 import Banner from './components/banner';
 import ProviderCard from './components/provider-card';
 import IdeaCard from './components/idea-card';
+import ButtonGroup from './components/buttonGroup';
+import SearchInput from './components/searchImput';
+
 
 export default function Home() {
   return (
     <>
       <Banner />
+      <SearchInput />
+
       <section id="main__content" className="mx-auto max-w-7xl mt-5">
         <h2 className="text-2xl font-medium">¿Con qué podemos ayudarte hoy?</h2>
         <section id="providers" className="mt-10 flex flex-wrap justify-center">
@@ -47,6 +52,8 @@ export default function Home() {
             image="/images/providers/mecanico.jpeg"
           />
         </section>
+
+        <ButtonGroup />
 
         <h2 className="text-2xl font-medium">Ideas para mejorar tu hogar</h2>
         <section id="ideas" className="mt-10 flex flex-wrap justify-center">
