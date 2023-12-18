@@ -1,8 +1,8 @@
 import Banner from './components/banner';
 import ProviderCard from './components/provider-card';
 import IdeaCard from './components/idea-card';
-import ButtonGroup from './components/buttonGroup';
-import SearchInput from './components/searchImput';
+import ButtonGroup from './components/button-group';
+import SearchInput from './components/search-input';
 
 
 export default function Home() {

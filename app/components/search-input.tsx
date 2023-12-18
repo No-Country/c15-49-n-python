@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputSearch = () => {
+const SearchInput = () => {
     const primaryColor = 'rgba(142, 85, 235, 0.8)';
     const boxColor = 'rgba(245, 245, 245, 0.8)';
   return (
@@ -18,9 +18,4 @@ const InputSearch = () => {
   );
 };
 
-// .bg-search-bold {
-//     background-image: url(../public/search-bold.svg);
-//   }
-  
-
-export default InputSearch;
+export default SearchInput;
