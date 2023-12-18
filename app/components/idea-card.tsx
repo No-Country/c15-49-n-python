@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 
 export default function IdeaCard({
@@ -10,19 +11,19 @@ export default function IdeaCard({
   image: string;
 }) {
   return (
-    <div className="shadow-lg border-2 m-4 rounded-md w-64 h-64">
-      <div className="h-40">
+    <div className="shadow-lg border-2 m-4 rounded-md w-64 h-64 relative">
+      <div className="h-60 relative">
         <Image
           className="h-full w-auto"
           src={image}
           alt="Idea"
-          width={0}
-          height={0}
-          sizes="100vw"
+          layout="fill"
+          objectFit="cover"
         />
-      </div>
-      <div className="p-2">
-        <div className="font-medium text-md">{title}</div>
+        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="absolute inset-x-0 bottom-0 p-2 text-white text-md font-medium">
+        <h2 className="text-lg font-bold">{title}</h2>
+        </div>
       </div>
     </div>
   );
