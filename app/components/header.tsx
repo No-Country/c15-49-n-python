@@ -6,7 +6,7 @@ import ProfileMenu from './profile-menu';
 
 export default function Header() {
   return (
-    <nav className="bg-white border-2">
+    <nav className="bg-white border-2 fixed top-0 left-0 w-full" style={{ zIndex: '999' }}>
       {/* Desktop menu */}
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">

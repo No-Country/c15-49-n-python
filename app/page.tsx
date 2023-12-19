@@ -12,8 +12,8 @@ export default function Home() {
       <SearchInput />
 
       <section id="main__content" className="mx-auto max-w-7xl mt-5">
-        <h2 className="text-2xl font-medium">¿Con qué podemos ayudarte hoy?</h2>
-        <section id="providers" className="mt-10 flex flex-wrap justify-center">
+        <h2 className="m-1 p-1 text-2xl font-medium mt-2">¿Con qué podemos ayudarte hoy?</h2>
+        <section id="providers" className="mt-4 flex flex-wrap justify-center">
           {/* ToDo: Get providers from API */}
           <ProviderCard
             name="El viejo Gepetto"
@@ -55,8 +55,8 @@ export default function Home() {
 
         <ButtonGroup />
 
-        <h2 className="text-2xl font-medium">Ideas para mejorar tu hogar</h2>
-        <section id="ideas" className="mt-10 flex flex-wrap justify-center">
+        <h2 className="m-1 p-1 text-2xl font-medium mt-2">Ideas para mejorar tu hogar</h2>
+        <section id="ideas" className="mt-4 flex flex-wrap justify-center">
           {/* ToDo: Get providers from API */}
           <IdeaCard
             title="Domando el frió: 5 Trucos para decorar tu casa en invierno"

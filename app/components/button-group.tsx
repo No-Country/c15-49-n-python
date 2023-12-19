@@ -2,7 +2,7 @@ import React from 'react';
 
 const ButtonGroup = () => {
   return (
-    <div className="flex flex-wrap justify-center items-center">
+    <div className="mt-4 flex flex-wrap justify-center items-center">
       <div className="m-2 p-2 bg-white rounded-lg shadow-md">
       <button className="flex flex-col items-center justify-center w-24 h-24 bg-white-100 text-white rounded-lg">
           <img src="images/icons/martillo.png" alt="martillo" className="w-20 h-20" />
@@ -51,9 +51,6 @@ const ButtonGroup = () => {
           <span className="text-center text-black"></span>
         </button>
       </div>
-      <div className="m-2 p-2 bg-white rounded-lg shadow-md">
-      </div>    
-          
     </div>
   );
 };
