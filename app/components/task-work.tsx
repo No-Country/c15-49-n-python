@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PricingCard() {
+function TaskWork() {
   return (
     <section className="bg-gray-100 py-8 max-w-md mx-auto">
       <h2 className="text-3xl text-center mb-4">Coordinar Trabajo <br></br><span className="text-gradient">Usuario ---- Proveedor </span></h2>
@@ -66,4 +66,4 @@ function PricingCard() {
   );
 }
 
-export default PricingCard;
+export default TaskWork;
