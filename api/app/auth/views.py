@@ -60,18 +60,18 @@ def login():
         login_user(user, remember=True)  # La opción `remember` determina si se recuerda la sesión
 
 
-        # user_info = {
-        # 'user_id': current_user.id,
-        # 'email': current_user.email,
-        # 'first_name': current_user.first_name,
-        # 'last_name': current_user.last_name,
-        # 'location': current_user.location,
-        # 'profile_image': current_user.profile_image,
-        # 'jobs': get_user_jobs(current_user.id),}
+        user_info = {
+        'user_id': current_user.id,
+        'email': current_user.email,
+        'first_name': current_user.first_name,
+        'last_name': current_user.last_name,
+        'location': current_user.location,
+        'profile_image': current_user.profile_image,
+        'jobs': get_user_jobs(current_user.id),}
     
-        # return jsonify(user_info), 200
+        return jsonify(user_info), 200
 
-        return jsonify({'message': 'Inicio de sesión exitoso', 'user_id': user.id, 'email': user.email}), 200
+        # return jsonify({'message': 'Inicio de sesión exitoso', 'user_id': user.id, 'email': user.email}), 200
     else:
         return jsonify({'message': 'Correo electrónico o contraseña inválidos'}), 401
 

@@ -7,7 +7,6 @@ from flask import Blueprint
 user_views = Blueprint('user_views', __name__)
 
 
-
 @user_views.route('/get_user_data/<int:user_id>', methods=['GET'])
 def get_user_data(user_id):
     user = User.query.get(user_id)
