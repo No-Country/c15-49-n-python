@@ -23,7 +23,7 @@ export default function ProviderCard({
           alt="Proveedor"
           layout="fill"
         />
-      <div className="profile-image w-24 h-24 rounded-full overflow-hidden absolute botton-0 left-0 border-8" style={{ borderColor: "rgba(142, 85, 235, 0.8)" }}>
+      <div className="profile-image w-24 h-24 rounded-full overflow-hidden absolute -top-6 botton-0 -left-6 border-8" style={{ borderColor: "rgba(142, 85, 235, 0.8)" }}>
       <Image
           className="h-full w-auto"
           src={avatar}
