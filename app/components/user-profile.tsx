@@ -1,39 +1,36 @@
 import React from 'react';
-import Image from 'next/image';
 import ProviderCard from '../components/provider-card';
 import IdeaCard from '../components/idea-card';
+import UserCard from '../components/user-card';
+
 
 export default function ProfileUser({
-    name,
-    job,
-    address,
-    image,
-  }: {
-    name: string;
-    job: string;
-    address: string;
-    image: string;
-  }) {
+  name,
+  job,
+  address,
+  avatar,
+  image,
+}: {
+  name: string;
+  job: string;
+  address: string;
+  avatar: string;
+  image: string;
+}) {
   
     return (
     <div className="profile-card bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
-      <div className="profile-image w-24 h-24 rounded-full overflow-hidden">
-      <Image
-          className="h-full w-auto"
-          src={image}
-          alt="Proveedor"
-          width={0}
-          height={0}
-          sizes="100vw"
-        />
-      </div>
-      <div className="profile-details m-3 p-3 mt-6">
-        <h2 className="text-2xl font-bold">{name}</h2>
-        <p className="text-lg">{job}</p>
-        <p className="text-lg">{address}</p>
-      </div>
-      <section className="p-2 m-2 mt-auto">
-        <div className="flex justify-center md:justify-start w-screen">
+      <UserCard
+      name="El viejo Gepetto"
+      job="Carpintero"
+      address="Maipú, Santiago"
+      avatar='/images/providers/avatar.png'
+      image="/images/providers/carpintero.jpeg"
+      />
+
+      
+      <section className="p-2 m-2 mt-auto shadow-lg">
+        <div className="flex justify-center w-screen">
           <button className="p-2 m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Editar Perfil
           </button>
@@ -42,37 +39,42 @@ export default function ProfileUser({
           </button>
         </div>
       </section>
-        <h3 className="p-1 m-1 shadow-lg border-1 w-screen text-xl font-bold">Proveedores Favoritos</h3>
-      <section className="mt-auto">
+        {/* <h3 className="p-1 m-1 border-1 w-screen text-xl font-bold"></h3> */}
+        <h1 className="m-1 p-1 text-2xl w-screen text-xl font-bold mt-2">Proveedores Favoritos</h1>
+
+        <section id="providers" className="mt-4 flex flex-wrap justify-center shadow-lg">
         <ProviderCard
             name="El viejo Gepetto"
             job="Carpintero"
             address="Maipú, Santiago"
+            avatar='/images/providers/avatar.png'
             image="/images/providers/carpintero.jpeg"
           />
           <ProviderCard
             name="Jhon Smith"
             job="Fontanero"
             address="Lampa, Santiago"
+            avatar='/images/providers/avatar.png'
             image="/images/providers/fontanero.jpeg"
           />
           <ProviderCard
             name="Jardines Babilonios"
             job="Jardinero"
             address="Lampa, Santiago"
+            avatar='/images/providers/avatar.png'
             image="/images/providers/jardinero.jpeg"
           />
           <ProviderCard
             name="La Pinturería"
             job="Pintor"
             address="Santiago, Santiago"
+            avatar='/images/providers/avatar.png'
             image="/images/providers/pintor.jpeg"
           />
       </section>
-      <h3 className="p-1 m-1 shadow-lg border-1 w-screen text-xl font-bold">Ideas Guardadas</h3>
+      <h1 className="m-1 p-1 text-2xl w-screen text-xl font-bold mt-2">Proveedores Favoritos</h1>
 
-      <section className="mt-auto">
-        <section id="ideas" className="mt-10 flex flex-wrap justify-center">
+      <section id="ideas" className="mt-4 flex flex-wrap justify-center shadow-lg">
           {/* ToDo: Get providers from API */}
           <IdeaCard
             title="Domando el frió: 5 Trucos para decorar tu casa en invierno"
@@ -90,7 +92,6 @@ export default function ProfileUser({
             image="/images/ideas/idea-1.webp"
           />
         </section>
-      </section>
     </div>
   );
 };
