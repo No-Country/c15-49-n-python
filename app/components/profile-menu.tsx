@@ -57,7 +57,7 @@ export default function ProfileMenu() {
       >
         <MenuItem
           label="Mi Cuenta"
-          link="/login"
+          link="/profile"
           onClick={toggleMenu}
         ></MenuItem>
         <MenuItem
