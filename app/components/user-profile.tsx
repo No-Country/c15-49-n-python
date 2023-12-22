@@ -4,23 +4,25 @@ import ProviderCard from '../components/provider-card';
 import IdeaCard from '../components/idea-card';
 
 export default function ProfileUser({
-    name,
-    job,
-    address,
-    image,
-  }: {
-    name: string;
-    job: string;
-    address: string;
-    image: string;
-  }) {
+  name,
+  job,
+  address,
+  avatar,
+  image,
+}: {
+  name: string;
+  job: string;
+  address: string;
+  avatar: string;
+  image: string;
+}) {
   
     return (
     <div className="profile-card bg-white rounded-lg shadow-md p-6 flex flex-col items-center">
       <div className="profile-image w-24 h-24 rounded-full overflow-hidden">
       <Image
           className="h-full w-auto"
-          src={image}
+          src={avatar}
           alt="Proveedor"
           width={0}
           height={0}
@@ -48,24 +50,28 @@ export default function ProfileUser({
             name="El viejo Gepetto"
             job="Carpintero"
             address="Maipú, Santiago"
+            avatar='/images/providers/avatar.png'
             image="/images/providers/carpintero.jpeg"
           />
           <ProviderCard
             name="Jhon Smith"
             job="Fontanero"
             address="Lampa, Santiago"
+            avatar='/images/providers/avatar.png'
             image="/images/providers/fontanero.jpeg"
           />
           <ProviderCard
             name="Jardines Babilonios"
             job="Jardinero"
             address="Lampa, Santiago"
+            avatar='/images/providers/avatar.png'
             image="/images/providers/jardinero.jpeg"
           />
           <ProviderCard
             name="La Pinturería"
             job="Pintor"
             address="Santiago, Santiago"
+            avatar='/images/providers/avatar.png'
             image="/images/providers/pintor.jpeg"
           />
       </section>
